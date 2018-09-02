@@ -56,9 +56,8 @@
             configFile: KARMA_CONFIG,
             expectedBrowsers: [
                 "Chrome 68.0.3440 (Mac OS X 10.13.6)",
-                "Firefox 37.0.0 (Mac OS X 10.10)"
-            ],
-            strict: false
+                "Firefox 37.0.0 (Mac OS X 10.10)",
+            ]
         }, complete, fail);
     }, { async: true });
 }());
