@@ -1,9 +1,11 @@
 (function(){
     "use static";
 
+
     var jshint = require("simplebuild-jshint");
     var karma = require("simplebuild-karma");
-    var KARMA_CONFIG = "karma.conf.js"
+    var KARMA_CONFIG = "karma.conf.js";
+
     desc("Start the karma server (run this first)");
     task("karma", function () {
         console.log("starting karma server");
@@ -53,9 +55,10 @@
         karma.run({
             configFile: KARMA_CONFIG,
             expectedBrowsers: [
-                "Chrome 42.0.2311 (Mac OS X 10.10.3)",
+                "Chrome 68.0.3440 (Mac OS X 10.13.6)",
                 "Firefox 37.0.0 (Mac OS X 10.10)"
-            ]
+            ],
+            strict: false
         }, complete, fail);
     }, { async: true });
 }());
