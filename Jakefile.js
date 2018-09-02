@@ -5,7 +5,7 @@
     var jshint = require("simplebuild-jshint");
     var karma = require("simplebuild-karma");
     var KARMA_CONFIG = "karma.conf.js";
-
+    var GENERATED_Dir = "generated/dist";
     desc("Start the karma server (run this first)");
     task("karma", function () {
         console.log("starting karma server");
@@ -22,10 +22,19 @@
     });
 
     desc("Run a localhost server");
-    task("run", function () {
-        jake.exec("node node_modules/http-server/bin/http-server src", {interactive: true}, complete);
+    task("run", ["build"], function () {
+        jake.exec("node node_modules/http-server/bin/http-server "+GENERATED_Dir, {interactive: true}, complete);
         console.log("run http server");
     });
+
+
+    desc("Clean all generated files");
+    task("clean", GENERATED_Dir, function () {
+        console.log("Cleaning up the generated files..");
+
+    });
+
+
 
     desc("check node version");
     task("version", function () {
@@ -60,4 +69,12 @@
             ]
         }, complete, fail);
     }, { async: true });
+
+    desc("build distribution dirc");
+    task("build", [GENERATED_Dir], function() {
+
+        console.log("building ..");
+    }, { async: true });
+
+    directory(GENERATED_Dir);
 }());
